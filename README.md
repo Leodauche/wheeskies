@@ -1,1 +1,2 @@
-# wheeskies
+# SideBot
+SideBot
