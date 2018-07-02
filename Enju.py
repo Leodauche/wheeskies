@@ -25,15 +25,15 @@ async def aide():
 	embed.add_field(name="enju", value="Envoie une image d'Enju", inline=False)
 	embed.add_field(name="avatar", value="Affiche l'avatar d'un utilisateur", inline=False)
 	embed.add_field(name="emoji", value="Affiche un emoji en plus gros", inline=False)
-	msg = await bot.say(embed=embed)
+	msg = await ctx.send(embed=embed)
 	await autodestruct(msg,ctx.message,ctx.message.author)
 
 
 @bot.command(pass_context=True)
 async def wait(ctx,nombre):
-	await bot.say("début")
+	await ctx.send("début")
 	time.sleep(int(nombre))
-	await bot.say("fin")
+	await ctx.send("fin")
 
 
 
@@ -50,7 +50,7 @@ async def delete(ctx, nombre):
 	if (ctx.message.author.top_role == weeb) :
 		await bot.purge_from(ctx.message.channel, limit=int(nombre))
 	else :
-		msg = await bot.say("Seul mon Kinji peut utiliser cette commande !")
+		msg = await ctx.send("Seul mon Kinji peut utiliser cette commande !")
 		await autodestruct(msg,ctx.message,ctx.message.author)
 
 
@@ -66,14 +66,14 @@ async def enju(ctx):
 async def dit(ctx,*,message):
 	weeb = discord.utils.get(ctx.message.server.roles, id='413821933478739970')
 	if (ctx.message.author.top_role == weeb) :
-		await bot.say(str(message))
+		await ctx.send(str(message))
 	else :
-		msg = await bot.say("Seul mon Kinji peut utiliser cette commande !")
+		msg = await ctx.send("Seul mon Kinji peut utiliser cette commande !")
 		await autodestruct(msg,ctx.message,ctx.message.author)
 
 @bot.command(pass_context=True)
 async def sayd(ctx,*,message):
-	await bot.say(str(message))
+	await ctx.send(str(message))
 	await bot.delete_message(ctx.message)
 
 
@@ -97,7 +97,7 @@ async def couleur(ctx, arg1, arg2=None):
 			i += 1
 			print(i)
 			time.sleep(0.5)
-		msg = await bot.say("Votre couleur a bien été enlevée, si ce n'est pas le cas contacter un adminitrateur pour qu'il vous le fasse manuellement")
+		msg = await ctx.send("Votre couleur a bien été enlevée, si ce n'est pas le cas contacter un adminitrateur pour qu'il vous le fasse manuellement")
 		await autodestruct(msg,ctx.message,ctx.message.author)
 	elif(Arg1.lower()=="help"):
 		CoulEmb = discord.Embed(title="La commande !couleur vous permet de changer la couleur de votre pseudo sur le serveur", color=0x0a00ff)
@@ -135,7 +135,7 @@ async def emoji(ctx, emoji: discord.Emoji):
 	#embed = discord.Embed(title = ":{}:".format(emoji.name),color=0x4286f4)
 	embed = discord.Embed(color=0x4286f4)
 	embed.set_image(url=emoji.url)
-	await bot.say(embed=embed)
+	await ctx.send(embed=embed)
 
 """
 @bot.command(pass_context=True)
@@ -148,7 +148,7 @@ async def RemoveRole(ctx,role):
 async def avatar(ctx, user: discord.Member):
 	embed = discord.Embed(title="Avatar de {}".format(user.name), color=0xff0000)
 	embed.set_image(url=user.avatar_url)
-	await bot.say(embed=embed)
+	await ctx.send(embed=embed)
 
 
 @bot.command(pass_context=True)
