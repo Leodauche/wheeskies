@@ -16,7 +16,7 @@ bot.remove_command('help')
 @bot.event
 async def on_ready():
 	print ("Enju prete !")
-	await bot.change_presence(game=discord.Game(name='!aide'))
+	await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.playing, name='!aide'))
 
 	
 @bot.command(pass_context=True)
